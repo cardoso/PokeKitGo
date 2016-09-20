@@ -19,7 +19,11 @@ class GameScene: SKScene {
     
     
     func touchDown(atPoint pos : CGPoint) {
-
+        let pokemon = PokemonNode.randomPokemonOfType(type: .water)
+        
+        pokemon.position = pos
+        
+        self.addChild(pokemon)
     }
     
     func touchMoved(toPoint pos : CGPoint) {
