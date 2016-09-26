@@ -24,11 +24,20 @@ class PokemonNode : SKNode {
     init(withType type: PokemonType, andTexture texture: SKTexture) {
         self.type = type
         
-        self.sprite = SKSpriteNode(texture: PokemonNode.randomPokemonTextureOfType(type: type))
+        let texture = PokemonNode.randomPokemonTextureOfType(type: type)
+        
+        
+        let container = SKSpriteNode(texture: texture)
+        container.name = "\(type)"
+        container.color = SKColor.clear
+        
+        self.sprite = SKSpriteNode(texture: texture)
+        self.sprite.zPosition = -1
         
         super.init()
         
-        self.addChild(self.sprite)
+        container.addChild(self.sprite)
+        self.addChild(container)
     }
     
     required init?(coder aDecoder: NSCoder) {

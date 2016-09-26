@@ -14,8 +14,9 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let scene = GameScene(size: UIScreen.main.bounds.size)
-            
+        //let scene = GameScene(size: UIScreen.main.bounds.size)
+        let scene = GridGameScene(size: UIScreen.main.bounds.size)
+        
         // Set the scale mode to scale to fit the window
         scene.scaleMode = .aspectFill
             

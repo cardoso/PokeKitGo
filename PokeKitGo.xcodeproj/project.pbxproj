@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B57848DD1D98BEF3009EB8DF /* GridGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57848DC1D98BEF3009EB8DF /* GridGameScene.swift */; };
 		D13EA44C1D91CDB2006D16DF /* PokemonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13EA44B1D91CDB2006D16DF /* PokemonNode.swift */; };
 		D17A1CC71D90717700BF95EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17A1CC61D90717700BF95EA /* AppDelegate.swift */; };
 		D17A1CC91D90717700BF95EA /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D17A1CC81D90717700BF95EA /* GameScene.sks */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B57848DC1D98BEF3009EB8DF /* GridGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridGameScene.swift; sourceTree = "<group>"; };
 		D13EA44B1D91CDB2006D16DF /* PokemonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonNode.swift; sourceTree = "<group>"; };
 		D17A1CC31D90717700BF95EA /* PokeKitGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokeKitGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D17A1CC61D90717700BF95EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +45,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B57848DE1D98BF0F009EB8DF /* GameGrid */ = {
+			isa = PBXGroup;
+			children = (
+				B57848DC1D98BEF3009EB8DF /* GridGameScene.swift */,
+			);
+			name = GameGrid;
+			sourceTree = "<group>";
+		};
 		D17A1CBA1D90717700BF95EA = {
 			isa = PBXGroup;
 			children = (
@@ -63,9 +73,10 @@
 			isa = PBXGroup;
 			children = (
 				D17A1CC61D90717700BF95EA /* AppDelegate.swift */,
+				B57848DE1D98BF0F009EB8DF /* GameGrid */,
+				D17A1CCC1D90717700BF95EA /* GameScene.swift */,
 				D17A1CC81D90717700BF95EA /* GameScene.sks */,
 				D17A1CCA1D90717700BF95EA /* Actions.sks */,
-				D17A1CCC1D90717700BF95EA /* GameScene.swift */,
 				D13EA44B1D91CDB2006D16DF /* PokemonNode.swift */,
 				D17A1CCE1D90717700BF95EA /* GameViewController.swift */,
 				D17A1CD01D90717700BF95EA /* Main.storyboard */,
@@ -154,6 +165,7 @@
 				D17A1CCD1D90717700BF95EA /* GameScene.swift in Sources */,
 				D17A1CCF1D90717700BF95EA /* GameViewController.swift in Sources */,
 				D17A1CC71D90717700BF95EA /* AppDelegate.swift in Sources */,
+				B57848DD1D98BEF3009EB8DF /* GridGameScene.swift in Sources */,
 				D13EA44C1D91CDB2006D16DF /* PokemonNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
