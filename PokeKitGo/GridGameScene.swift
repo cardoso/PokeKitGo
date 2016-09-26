@@ -18,7 +18,7 @@ class GridGameScene: SKScene {
     
     let displaySize = UIScreen.main.bounds.size
     
-    var typePokemon: String?
+    var typePokemon: PokemonType?
     var firePokemons: Int?
     var waterPokemons: Int?
     var eletricPokemons: Int?
@@ -44,32 +44,6 @@ class GridGameScene: SKScene {
        
         if (self.isPaused == true) {
             self.restart()
-        }
-        
-        
-        
-        let galera = self.nodes(at: pos)
-        
-        if self.blocked == false {
-        
-            if let first = galera.first {
-                if self.typePokemon == nil {
-                    self.typePokemon = first.name
-                    print(first.name)
-                }
-                else {
-                    if self.typePokemon == first.name {
-                        self.increaseScore()
-                    }
-                    else {
-                        self.finishLose()
-                    }
-                }
-                first.removeFromParent()
-            }
-        }
-        else {
-            self.blocked = false
         }
     }
     
@@ -136,6 +110,7 @@ class GridGameScene: SKScene {
             var j = 0
             while(j < 6) {
                 let pokemon = PokemonNode.randomPokemonOfType(type: self.randomTypeNumber())
+                pokemon.delegate = self
                 
                 let b = Double((j % 6) + 1)
                 let d = b / 8.0
@@ -166,6 +141,32 @@ class GridGameScene: SKScene {
         
     }
     
+    
+    func increaseScore() {
+        self.score = self.score! + 1
+        
+        var max = 0
+
+        if self.typePokemon == PokemonType.water {
+            max = self.waterPokemons!
+        }
+        
+        if self.typePokemon == PokemonType.fire {
+            max = self.firePokemons!
+        }
+        
+        if self.typePokemon == PokemonType.electric {
+            max = self.eletricPokemons!
+        }
+        
+        print(max)
+        print(self.score)
+        
+        if self.score! >= max - 1 {
+            self.finishVictory()
+        }
+    }
+    
     func finishLose() {
         self.removeAllChildren()
         
@@ -179,36 +180,10 @@ class GridGameScene: SKScene {
         self.addChild(congrats)
         
         self.isPaused = true
-
-    }
-    
-    func increaseScore() {
-        self.score = self.score! + 1
         
-        var max = 0
-
-        if self.typePokemon == "\(PokemonType.water)" {
-            max = self.waterPokemons!
-        }
-        
-        if self.typePokemon == "\(PokemonType.fire)" {
-            max = self.firePokemons!
-        }
-        
-        if self.typePokemon == "\(PokemonType.electric)" {
-            max = self.eletricPokemons!
-        }
-        
-        print(max)
-        print(self.score)
-        
-        if self.score! >= max - 1 {
-            self.finishVictory()
-        }
     }
     
     func finishVictory() {
-        
         self.removeAllChildren()
         
         self.typePokemon = nil
@@ -244,5 +219,25 @@ class GridGameScene: SKScene {
         let str = String(format: "%.2d", lround(actualTime))
         
         self.counter?.text = str
+    }
+}
+
+extension GridGameScene: PokemonNodeDelegate {
+    func didTapPokemonNode(pokemonNode: PokemonNode) {
+        if self.blocked == false {
+            if self.typePokemon == nil {
+                self.typePokemon = pokemonNode.type
+            }
+            else if pokemonNode.type == self.typePokemon {
+                self.increaseScore()
+            }
+            else {
+                self.finishLose()
+            }
+            pokemonNode.removeFromParent()
+        }
+        else {
+            self.blocked = false
+        }
     }
 }

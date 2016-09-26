@@ -15,29 +15,33 @@ enum PokemonType {
     case electric
 }
 
+protocol PokemonNodeDelegate {
+    func didTapPokemonNode(pokemonNode: PokemonNode)
+}
+
 class PokemonNode : SKNode {
     
     var type: PokemonType
     
     var sprite: SKSpriteNode
     
+    var delegate: PokemonNodeDelegate?
+    
     init(withType type: PokemonType, andTexture texture: SKTexture) {
+        
         self.type = type
         
-        let texture = PokemonNode.randomPokemonTextureOfType(type: type)
-        
-        
-        let container = SKSpriteNode(texture: texture)
-        container.name = "\(type)"
-        container.color = SKColor.clear
-        
-        self.sprite = SKSpriteNode(texture: texture)
-        self.sprite.zPosition = -1
+        self.sprite = SKSpriteNode(texture: PokemonNode.randomPokemonTextureOfType(type: type))
         
         super.init()
         
-        container.addChild(self.sprite)
-        self.addChild(container)
+        self.isUserInteractionEnabled = true
+        self.sprite.zPosition = -1
+        self.addChild(self.sprite)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.delegate?.didTapPokemonNode(pokemonNode: self)
     }
     
     required init?(coder aDecoder: NSCoder) {
