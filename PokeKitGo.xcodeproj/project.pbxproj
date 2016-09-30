@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B57848DD1D98BEF3009EB8DF /* GridGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57848DC1D98BEF3009EB8DF /* GridGameScene.swift */; };
+		B57849241D9B0ECA009EB8DF /* GameGridData.plist in Resources */ = {isa = PBXBuildFile; fileRef = B57849231D9B0ECA009EB8DF /* GameGridData.plist */; };
 		D13EA44C1D91CDB2006D16DF /* PokemonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13EA44B1D91CDB2006D16DF /* PokemonNode.swift */; };
 		D17A1CC71D90717700BF95EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17A1CC61D90717700BF95EA /* AppDelegate.swift */; };
 		D17A1CC91D90717700BF95EA /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D17A1CC81D90717700BF95EA /* GameScene.sks */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		B57848DC1D98BEF3009EB8DF /* GridGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridGameScene.swift; sourceTree = "<group>"; };
+		B57849231D9B0ECA009EB8DF /* GameGridData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = GameGridData.plist; path = /Users/augustofalcao/Documents/Aplicativos/PokeKitGo/PokeKitGo/GameGridData.plist; sourceTree = "<absolute>"; };
 		D13EA44B1D91CDB2006D16DF /* PokemonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonNode.swift; sourceTree = "<group>"; };
 		D17A1CC31D90717700BF95EA /* PokeKitGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokeKitGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D17A1CC61D90717700BF95EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -31,7 +33,7 @@
 		D17A1CD11D90717700BF95EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D17A1CD31D90717700BF95EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D17A1CD61D90717700BF95EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D17A1CD81D90717700BF95EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D17A1CD81D90717700BF95EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = /Users/augustofalcao/Documents/Aplicativos/PokeKitGo/PokeKitGo/Info.plist; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +50,7 @@
 		B57848DE1D98BF0F009EB8DF /* GameGrid */ = {
 			isa = PBXGroup;
 			children = (
+				B57849231D9B0ECA009EB8DF /* GameGridData.plist */,
 				B57848DC1D98BEF3009EB8DF /* GridGameScene.swift */,
 			);
 			name = GameGrid;
@@ -119,7 +122,7 @@
 				TargetAttributes = {
 					D17A1CC21D90717700BF95EA = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = FWD9V5VYJ2;
+						DevelopmentTeam = Q9563KMS4F;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -147,6 +150,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B57849241D9B0ECA009EB8DF /* GameGridData.plist in Resources */,
 				D17A1CD21D90717700BF95EA /* Main.storyboard in Resources */,
 				D17A1CC91D90717700BF95EA /* GameScene.sks in Resources */,
 				D17A1CD41D90717700BF95EA /* Assets.xcassets in Resources */,
@@ -289,7 +293,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = FWD9V5VYJ2;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = Q9563KMS4F;
 				INFOPLIST_FILE = PokeKitGo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -303,7 +308,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = FWD9V5VYJ2;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = Q9563KMS4F;
 				INFOPLIST_FILE = PokeKitGo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

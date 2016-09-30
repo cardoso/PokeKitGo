@@ -12,6 +12,7 @@ import GameplayKit
 class GridGameScene: SKScene {
     
     private var lastUpdateTime : TimeInterval = 0
+    var actualTime: TimeInterval = 0
     var counter: SKLabelNode?
     
     var blocked = false
@@ -43,7 +44,8 @@ class GridGameScene: SKScene {
     func touchDown(atPoint pos : CGPoint) {
        
         if (self.isPaused == true) {
-            self.restart()
+            self.backToMenu()
+            //self.restart()
         }
     }
     
@@ -109,7 +111,9 @@ class GridGameScene: SKScene {
             
             var j = 0
             while(j < 6) {
+                let side = self.displaySize.width * 0.22
                 let pokemon = PokemonNode.randomPokemonOfType(type: self.randomTypeNumber())
+                pokemon.sprite.size = CGSize(width: side, height: side)
                 pokemon.delegate = self
                 
                 let b = Double((j % 6) + 1)
@@ -188,12 +192,27 @@ class GridGameScene: SKScene {
         
         self.typePokemon = nil
         
-        let congrats = SKLabelNode(text: "Parabéns, você ganhou!")
+        let seconds = lround(self.actualTime)
+        let str = String(format: "%.2d", seconds)
+        
+        let congrats = SKLabelNode(text: "Voce ganhou em \(str)s!")
         congrats.name = "congrats"
         congrats.fontColor = SKColor.white
         congrats.fontSize = 40
         congrats.position = CGPoint(x: self.displaySize.width * 0.5, y: self.displaySize.height * 0.5)
         self.addChild(congrats)
+        
+        var previousTime = 666
+        
+        if let data = UserDefaults.standard.object(forKey: "time") {
+            previousTime = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! Int!
+        }
+        
+        if seconds < previousTime {            
+            let data = NSKeyedArchiver.archivedData(withRootObject: seconds)
+            UserDefaults.standard.set(data, forKey: "time")
+        }
+        
         
         self.isPaused = true
     }
@@ -206,6 +225,14 @@ class GridGameScene: SKScene {
         self.sceneDidLoad()
     }
     
+    func backToMenu() {
+        let scene = GameScene(size: self.displaySize)
+        
+        let transition = SKTransition.fade(withDuration: 0.5)
+        
+        self.view?.presentScene(scene, transition: transition)
+    }
+    
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         
@@ -214,10 +241,8 @@ class GridGameScene: SKScene {
             self.lastUpdateTime = currentTime
         }
         
-        let actualTime = currentTime - self.lastUpdateTime
-        
-        let str = String(format: "%.2d", lround(actualTime))
-        
+        self.actualTime = currentTime - self.lastUpdateTime
+        let str = String(format: "%.2d", lround(self.actualTime))
         self.counter?.text = str
     }
 }

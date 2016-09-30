@@ -8,22 +8,64 @@
 
 import SpriteKit
 import GameplayKit
+import Foundation
 
 class GameScene: SKScene {
     
-    private var lastUpdateTime : TimeInterval = 0
+    let displaySize = UIScreen.main.bounds.size
     
     override func sceneDidLoad() {
-        self.lastUpdateTime = 0
+        self.setup()
     }
     
+    func setup() {
+        self.createStartLabel()
+        self.createHighScore()
+        self.createTitleLabel()
+    }
+    
+    func createStartLabel() {
+        let position = CGPoint(x: self.displaySize.width * 0.5, y: self.displaySize.height * 0.5)
+        
+        let label = SKLabelNode(text: "Aperte para começar!")
+        label.position = position
+        
+        self.addChild(label)
+    }
+    
+    func createHighScore() {
+        let position = CGPoint(x: self.displaySize.width * 0.5, y: self.displaySize.height * 0.25)
+        
+        let label = SKLabelNode(text: "???")
+        label.position = position
+        
+        if let data = UserDefaults.standard.object(forKey: "time") {
+            let time = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! Int!
+            label.text = "Best time - \(time!)"
+        }
+        
+        self.addChild(label)
+    }
+    
+    func createTitleLabel() {
+        let position = CGPoint(x: self.displaySize.width * 0.5, y: self.displaySize.height * 0.75)
+        
+        let label = SKLabelNode(text: "PokeCatch!")
+        label.position = position
+        
+        self.addChild(label)
+    }
+    
+    func playGame() {
+        let scene = GridGameScene(size: self.displaySize)
+        
+        let transition = SKTransition.fade(withDuration: 0.5)
+        
+        self.view?.presentScene(scene, transition: transition)
+    }
     
     func touchDown(atPoint pos : CGPoint) {
-        let pokemon = PokemonNode.randomPokemonOfType(type: .water)
-        
-        pokemon.position = pos
-        
-        self.addChild(pokemon)
+        self.playGame()
     }
     
     func touchMoved(toPoint pos : CGPoint) {
@@ -54,11 +96,5 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         
-        // Initialize _lastUpdateTime if it has not already been
-        if self.lastUpdateTime == 0 {
-            self.lastUpdateTime = currentTime
-        }
-        
-        self.lastUpdateTime = currentTime
     }
 }
